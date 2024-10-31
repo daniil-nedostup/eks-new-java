@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "eks-new-java.fullname" . }}-test-connection"
+  labels:
+    {{- include "eks-new-java.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "eks-new-java.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

@@ -1,0 +1,1 @@
+1. Application eks-new-java has been successfully deployed!!
